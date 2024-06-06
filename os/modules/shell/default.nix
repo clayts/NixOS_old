@@ -20,7 +20,33 @@
   hostfetch = pkgs.writeShellApplication {
     name = "hostfetch";
     runtimeInputs = with pkgs; [lolcat ncurses figlet];
-    text = builtins.readFile ./hostfetch.sh;
+    text = ''
+      logo=$(figlet -f ${./rustofat-alt.tlf} "$(hostname)")
+
+      # shellcheck source=/dev/null
+      source /etc/os-release
+
+      loltext=$(echo "$logo" | lolcat -f -F 0.5)
+
+      hardware=$(cat /sys/devices/virtual/dmi/id/product_name)
+      os="$PRETTY_NAME"
+      kernel=$(uname -sr)
+
+      style_bold=$(tput bold)
+      style_normal=$(tput sgr0)
+
+      echo
+      echo -n "  "
+      echo -n "$loltext" | head -n1 | tr -d '\n'
+      echo "''${style_bold}   Hardware: ''${style_normal}$hardware"
+      echo -n "  "
+      echo -n "$loltext" | head -n2 | tail -n1 | tr -d '\n'
+      echo "''${style_bold}   OS: ''${style_normal}$os"
+      echo -n "  "
+      echo -n "$loltext" | tail -n1 | tr -d '\n'
+      echo "''${style_bold}   Kernel: ''${style_normal}$kernel"
+      echo
+    '';
   };
 in {
   environment.systemPackages = with pkgs; [fzf eza fd micro];
@@ -37,7 +63,8 @@ in {
   environment.variables = {
     EDITOR = "${./edit.sh}";
     GOPATH = "$HOME/.local/share/go";
-    NIXOS_OZONE_WL = "1";
+    NIXOS_OZONE_WL = "1"; # Ask Electron and Chromium apps to run in wayland mode
+    MOZ_ENABLE_WAYLAND = "1"; # Ask firefox to run in wayland mode
   };
 
   users.defaultUserShell = pkgs.zsh;
