@@ -1,8 +1,4 @@
-{
-  pkgs,
-  lib,
-  ...
-}: let
+{pkgs, ...}: let
   powerlevel10k = pkgs.fetchFromGitHub {
     owner = "romkatv";
     repo = "powerlevel10k";
