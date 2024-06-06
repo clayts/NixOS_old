@@ -29,7 +29,7 @@
 in {
   environment.systemPackages = with pkgs; [fzf eza fd micro];
   environment.shellAliases = {
-    micro = "micro -colorscheme geany";
+    edit = "$EDITOR";
     open = "xdg-open";
     ls = "eza --icons=always --group-directories-first";
     lt = "eza --tree --icons=always --group-directories-first";
@@ -39,14 +39,14 @@ in {
   environment.localBinInPath = true;
   programs.nano.enable = false;
   environment.variables = {
-    EDITOR = "micro";
+    EDITOR = "${./edit.sh}";
     GOPATH = "$HOME/.local/share/go";
   };
 
   users.defaultUserShell = pkgs.zsh;
 
   # Prevent the new user dialog
-  system.userActivationScripts.zshrc = "touch .zshrc";
+  system.userActivationScripts.empty-zshrc = {text = "touch .zshrc";};
 
   programs.zsh = {
     autosuggestions.enable = true;

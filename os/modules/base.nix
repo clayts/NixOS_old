@@ -29,8 +29,12 @@
   nix.settings.experimental-features = ["nix-command" "flakes"];
   ## Needed to build flakes etc
   environment.systemPackages = with pkgs; [git gh];
-  # Disable channels
-  # nix.channel.enable = false;
+  ## Prevents annoying error messages
+  system.activationScripts.empty-channel = {
+    text = ''
+      mkdir -p /nix/var/nix/profiles/per-user/root/channels
+    '';
+  };
 
   # Remove bloat
   documentation.nixos.enable = false;
