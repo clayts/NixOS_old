@@ -14,29 +14,14 @@
       description = "Guest";
     };
     # Systems #################################################################
-    # nixosConfigurations = import ./configure.nix inputs {
-    #   hex = {
-    #     imports = [
-    #       ./hardware/inspiron.nix
-    #       ./language/uk.nix
-    #       ./os/desktop.nix
-    #     ];
-    #     users.users = {inherit cs guest;};
-    #   };
-    # };
-    nixosConfigurations = {
-      hex = inputs.nixpkgs.lib.nixosSystem {
-        modules = [
-          {
-            imports = [
-              {networking.hostName = "hex";}
-              ./hardware/inspiron.nix
-              ./language/uk.nix
-              ./os/desktop.nix
-            ];
-            users.users = {inherit user guest;};
-          }
+    nixosConfigurations = import ./configure.nix inputs {
+      hex = {
+        imports = [
+          ./hardware/inspiron.nix
+          ./language/uk.nix
+          ./os/desktop.nix
         ];
+        users.users = {inherit user guest;};
       };
     };
     ###########################################################################
