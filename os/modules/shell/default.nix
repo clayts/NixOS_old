@@ -37,6 +37,7 @@ in {
   environment.variables = {
     EDITOR = "${./edit.sh}";
     GOPATH = "$HOME/.local/share/go";
+    NIXOS_OZONE_WL = "1";
   };
 
   users.defaultUserShell = pkgs.zsh;
