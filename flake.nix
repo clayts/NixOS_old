@@ -4,16 +4,18 @@
   };
   outputs = inputs @ {...}: let
     # Users ###################################################################
-    user = {
-      isNormalUser = true;
-      description = "User";
-      extraGroups = ["wheel" "networkmanager"];
+    users = {
+      user = {
+        isNormalUser = true;
+        description = "User";
+        extraGroups = ["wheel" "networkmanager"];
+      };
+      guest = {
+        isNormalUser = true;
+        description = "Guest";
+      };
     };
-    guest = {
-      isNormalUser = true;
-      description = "Guest";
-    };
-    # Systems #################################################################
+    # NixOS Configurations ####################################################
     nixosConfigurations = import ./configure.nix inputs {
       hex = {
         imports = [
@@ -21,7 +23,7 @@
           ./language/uk.nix
           ./os/desktop.nix
         ];
-        users.users = {inherit user guest;};
+        users = {inherit users;};
       };
     };
     ###########################################################################
