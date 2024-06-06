@@ -10,7 +10,7 @@ buildNpmPackage rec {
   src = fetchFromGitHub {
     owner = "flexagoon";
     repo = pname;
-    rev = "v${version}";
+    rev = version;
     sha256 = "sha256-jS6G9wSKSXAxNhCmuew6pTcYa1gTZqbfrcAZ0ky4vkc=";
   };
 
