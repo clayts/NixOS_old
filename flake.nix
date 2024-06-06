@@ -4,9 +4,9 @@
   };
   outputs = inputs @ {...}: let
     # Users ###################################################################
-    cs = {
+    user = {
       isNormalUser = true;
-      description = "CS";
+      description = "User";
       extraGroups = ["wheel" "networkmanager"];
     };
     guest = {
@@ -34,7 +34,7 @@
               ./language/uk.nix
               ./os/desktop.nix
             ];
-            users.users = {inherit cs guest;};
+            users.users = {inherit user guest;};
           }
         ];
       };
