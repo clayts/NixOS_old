@@ -20,18 +20,18 @@ let
       boot.extraModulePackages = [];
 
       fileSystems."/" = {
-        device = "/dev/disk/by-uuid/45ffdf7b-8cf8-44f5-bf43-b47b451743ca";
+        device = "/dev/disk/by-id/nvme-PC_SN740_NVMe_WD_512GB_2227FA444717-part3";
         fsType = "f2fs";
       };
 
       fileSystems."/boot" = {
-        device = "/dev/disk/by-uuid/8033-8B09";
+        device = "/dev/disk/by-id/nvme-PC_SN740_NVMe_WD_512GB_2227FA444717-part1";
         fsType = "vfat";
         options = ["fmask=0022" "dmask=0022"];
       };
 
       swapDevices = [
-        {device = "/dev/disk/by-uuid/04f12f5d-c3b5-40a4-9b60-e9c34be5a295";}
+        {device = "/dev/disk/by-id/nvme-PC_SN740_NVMe_WD_512GB_2227FA444717-part2";}
       ];
 
       # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
