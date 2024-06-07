@@ -4,7 +4,7 @@
     ./modules/fonts.nix
     ./modules/gnome
     ./modules/firefox.nix
-    ./modules/steam.nix
+    ./modules/steam-base.nix
     ./modules/shell
     ./modules/sound.nix
     ./modules/networking.nix
