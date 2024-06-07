@@ -17,7 +17,7 @@
 * pre-install the github thing zsh powerlevel10k downloads on first use
 * move code to home-manager installation of codium with fhs and nix-specified plugins - all development (editor, plugins, settings, projects) will be in sync and in sync with the system. If working on some outside project with very specific environmental requirements which aren't compatible, make a flake with a devShell for it.
 * install librewolf system wide replacing firefox, enable fxaccounts by default?
-* steam ??
+* steam install per user but make desktop steam ready
 * https://wiki.gnome.org/Apps/Games
 * https://github.com/snowfallorg/nixos-conf-editor
 * https://github.com/snowfallorg/nix-software-center
